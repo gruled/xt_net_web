@@ -446,11 +446,8 @@ namespace Task01
             string secStr = Console.ReadLine();
             foreach (var sym in firstStr)
             {
+                resStr.Append(sym);
                 if (secStr.Contains(sym))
-                {
-                    resStr.Append(sym).Append(sym);
-                }
-                else
                 {
                     resStr.Append(sym);
                 }
