@@ -140,11 +140,11 @@ namespace Task01
         static void FontAdjustment()
         {
             Console.WriteLine("\nЗадание 1.6");
-            List<TypeParameters> listOfParameters = new List<TypeParameters>();
+            TypeParameters list = TypeParameters.None;
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Параметры надписи: " + PrintList(listOfParameters));
+                Console.WriteLine("Параметры надписи: " + list.ToString());
                 int input = ReadFontInt();
                 switch (input)
                 {
@@ -152,45 +152,24 @@ namespace Task01
                         flag = false;
                         break;
                     case 1:
-                        ManipulationWithList(listOfParameters, TypeParameters.Bold);
+                        list = ManageEnum(list, TypeParameters.Bold);
                         break;
                     case 2:
-                        ManipulationWithList(listOfParameters, TypeParameters.Italic);
+                        list = ManageEnum(list, TypeParameters.Italic);
                         break;
                     case 3:
-                        ManipulationWithList(listOfParameters, TypeParameters.Underline);
+                        list = ManageEnum(list, TypeParameters.Underline);
                         break;
                 }
             }
 
         }
 
-        static void ManipulationWithList(List<TypeParameters> list, TypeParameters type)
+        static TypeParameters ManageEnum(TypeParameters list, TypeParameters type)
         {
-            if (list.Contains(type))
-            {
-                list.Remove(type);
-            }
-            else
-            {
-                list.Add(type);
-            }
-        }
-
-        static string PrintList(List<TypeParameters> list)
-        {
-            if (list.Count > 0)
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                foreach (var item in list)
-                {
-                    stringBuilder.Append(item).Append(", ");
-                }
-
-                return stringBuilder.ToString();
-            }
-
-            return "None";
+            return list.HasFlag(type)
+                ? list ^ type
+                : list | type;
         }
 
         static int ReadFontInt()
@@ -206,11 +185,13 @@ namespace Task01
             }
         }
 
+        [Flags]
         private enum TypeParameters
         {
-            Bold,
-            Italic,
-            Underline
+            None = 0,
+            Bold = 1,
+            Italic = 2,
+            Underline = 4
         }
 
         static void ArrayProcessing()
