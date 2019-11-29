@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2", "Task2\Task2.csproj", "{79FE256A-3C36-4547-BFE0-B849E1AEF646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorGraphicsEditor", "VectorGraphicsEditor\VectorGraphicsEditor.csproj", "{7FBD2D8F-012F-4F20-A3C2-B2F79E14664F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{5DB7972A-64E6-4C7C-B75B-92AB9B26A96A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79FE256A-3C36-4547-BFE0-B849E1AEF646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79FE256A-3C36-4547-BFE0-B849E1AEF646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79FE256A-3C36-4547-BFE0-B849E1AEF646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79FE256A-3C36-4547-BFE0-B849E1AEF646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBD2D8F-012F-4F20-A3C2-B2F79E14664F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBD2D8F-012F-4F20-A3C2-B2F79E14664F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBD2D8F-012F-4F20-A3C2-B2F79E14664F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBD2D8F-012F-4F20-A3C2-B2F79E14664F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB7972A-64E6-4C7C-B75B-92AB9B26A96A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB7972A-64E6-4C7C-B75B-92AB9B26A96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB7972A-64E6-4C7C-B75B-92AB9B26A96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB7972A-64E6-4C7C-B75B-92AB9B26A96A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9838C0DD-79B1-4E5B-9498-D1D5BB700260}
+	EndGlobalSection
+EndGlobal
