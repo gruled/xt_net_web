@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Program
+    class Rock : GameObject, IObstacleable
     {
-        static void Main(string[] args)
+        public Rock(Vector2 position) : base(position)
         {
+
         }
     }
 }

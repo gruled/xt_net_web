@@ -8,54 +8,29 @@ namespace Game
 {
     abstract class GameObject
     {
-        private Vector2 _position;
-        private string _name;
 
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                if (value != null)
-                {
-                    _name = value;
-                }
-                else
-                {
-                    _name = "SomeObject";
-                }
-            }
-        }
+        private Vector2 _position;
 
         public Vector2 Position
         {
             get => _position;
             set
             {
-                if (value.X > 0 && value.X <= Map.Width)
+                if ((value.X >= 0 && value.Y >= 0) && (value.X <= Map.Width && value.Y <= Map.Height))
                 {
                     _position.X = value.X;
-                }
-                else
-                {
-                    _position.X = Map.Width;
-                }
-
-                if (value.Y > 0 && value.Y <= Map.Height)
-                {
                     _position.Y = value.Y;
                 }
                 else
                 {
-                    _position.Y = Map.Height;
+                    throw new ArgumentOutOfRangeException();
                 }
             }
         }
 
-        public GameObject(Vector2 position, string name)
+        protected GameObject(Vector2 position)
         {
-            this.Position = position;
-            this.Name = name;
+            Position = position;
         }
     }
 }

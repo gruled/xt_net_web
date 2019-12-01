@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    interface IBuf
+    interface IObstacleable
     {
-        void DoBaf(IPlayerable player);
     }
 }

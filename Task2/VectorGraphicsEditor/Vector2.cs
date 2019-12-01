@@ -8,18 +8,13 @@ namespace VectorGraphicsEditor
 {
     struct Vector2
     {
-        public double X;
-        public double Y;
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public Vector2(double x, double y)
         {
-            this.X = x;
-            this.Y = y;
-        }
-
-        public override string ToString()
-        {
-            return "X: " + X + " Y: " + Y;
+            X = x;
+            Y = y;
         }
     }
 }

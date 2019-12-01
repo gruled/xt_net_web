@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    interface IObstacle
+    interface IDamageable
     {
-        void Collide(DinamicGameObject obj);
+        void DoDamage(IPlayerable player);
     }
 }

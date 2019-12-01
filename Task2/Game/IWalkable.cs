@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Program
+    interface IWalkable
     {
-        static void Main(string[] args)
-        {
-        }
+        void Move();
     }
 }

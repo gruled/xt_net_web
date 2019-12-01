@@ -8,22 +8,25 @@ namespace VectorGraphicsEditor
 {
     class Line : Figure
     {
-        public Vector2 EndPosition;
 
-        public Line(Vector2 centerPosition, Vector2 endPosition) : base(centerPosition)
+        public Vector2 EndPosition { get; set; }
+
+        public Line(Vector2 startPosition, Vector2 endPosition) : base(startPosition)
         {
-            this.EndPosition = endPosition;
+            EndPosition = endPosition;
         }
 
-        public double Length => Math.Sqrt((CenterPosition.X - EndPosition.X) * (CenterPosition.X - EndPosition.X) +
-                                          (CenterPosition.Y - EndPosition.Y) * (CenterPosition.Y - EndPosition.Y));
+        public double Length => _calcLength();
 
-        public override void GetDescription()
+        private double _calcLength()
         {
-            base.GetDescription();
-            Console.WriteLine("End position: " + EndPosition.ToString());
-            Console.WriteLine("Length: " + Length);
+            return Math.Sqrt((Position.X - EndPosition.X) * (Position.X - EndPosition.X) +
+                             (Position.Y - EndPosition.Y) * (Position.Y - EndPosition.Y));
         }
 
+        public override string GetDescription()
+        {
+            return base.GetDescription() + " Length: " + Length;
+        }
     }
 }

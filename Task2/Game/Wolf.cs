@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Enemy : DinamicGameObject, IDoDamage
+    class Wolf : GameObject, IWalkable, IDamageable
     {
         private int _damage;
 
@@ -21,24 +21,24 @@ namespace Game
                 }
                 else
                 {
-                    _damage = 1;
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
             }
         }
 
-        public Enemy(Vector2 position, string name, int damage) : base(position, name)
+        public Wolf(Vector2 position, int damage) : base(position)
         {
             Damage = damage;
         }
 
-        public override void Move()
+        public void Move()
         {
-            //реализация передвижения врага
+
         }
 
         public void DoDamage(IPlayerable player)
         {
-            player.DecreaseHealth(Damage);
+            player.ReceiveDamage(Damage);
         }
     }
 }

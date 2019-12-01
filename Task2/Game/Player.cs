@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Player : DinamicGameObject, IPlayerable
+    class Player : GameObject, IWalkable, IPlayerable
     {
-
         private int _health;
 
         public int Health
@@ -22,29 +21,29 @@ namespace Game
                 }
                 else
                 {
-                    _health = 1;
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
             }
         }
 
-        public Player(Vector2 position, string name, int health) : base(position, name)
+        public void Move()
+        {
+
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            Health -= damage;
+        }
+
+        public Player(Vector2 position, int health) : base(position)
         {
             Health = health;
         }
 
-        public void DecreaseHealth(int i)
-        {
-            Health -= i;
-        }
-
-        public void IncreaseHealth(int i)
+        public void ReceiveHealthBonus(int i)
         {
             Health += i;
-        }
-
-        public override void Move()
-        {
-            //реализация хотьбы игроком
         }
     }
 }

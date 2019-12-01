@@ -8,9 +8,11 @@ namespace Game
 {
     class Map
     {
-        public List<DinamicGameObject> DinamicList;
-        public List<Bonus> BonusList;
-        public List<Obstacle> ObstacleList;
+        public List<IWalkable> LisWalkables = new List<IWalkable>();
+
+        public List<IBonusable> ListBonusables = new List<IBonusable>();
+
+        public List<IObstacleable> ListObstacleables = new List<IObstacleable>();
 
         private static double _width;
 
@@ -19,13 +21,13 @@ namespace Game
             get => _width;
             set
             {
-                if (value > 0.0)
+                if (value > 0)
                 {
                     _width = value;
                 }
                 else
                 {
-                    _width = 1.0;
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
             }
         }
@@ -37,21 +39,15 @@ namespace Game
             get => _height;
             set
             {
-                if (value > 0.0)
+                if (value > 0)
                 {
                     _height = value;
                 }
                 else
                 {
-                    _height = 1.0;
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
             }
-        }
-
-        public Map(double width, double height)
-        {
-            Map.Width = width;
-            Map.Height = height;
         }
     }
 }

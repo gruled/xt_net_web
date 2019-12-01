@@ -15,27 +15,25 @@ namespace VectorGraphicsEditor
             get => _radius;
             set
             {
-                if (value >= 0)
+                if (value > 0)
                 {
                     _radius = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Радиус должен иметь положительное значение");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Radius must be greater then 0");
                 }
             }
         }
 
-        public Circle(Vector2 centerPosition, double radius) : base(centerPosition)
+        public Circle(Vector2 position, double radius) : base(position)
         {
             Radius = radius;
         }
 
-        public override void GetDescription()
+        public override string GetDescription()
         {
-            base.GetDescription();
-            Console.WriteLine("Radius: " + Radius);
+            return base.GetDescription() + " Radius: " + Radius;
         }
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Bonus : GameObject, IBuf
+    class Cherry : GameObject, IBonusable
     {
         private int _healthBonus;
 
@@ -15,25 +15,25 @@ namespace Game
             get => _healthBonus;
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     _healthBonus = value;
                 }
                 else
                 {
-                    _healthBonus = 1;
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
             }
         }
 
-        public Bonus(Vector2 position, string name, int healthBonus) : base(position, name)
+        public Cherry(Vector2 position, int bonus) : base(position)
         {
-            HealthBonus = healthBonus;
+            HealthBonus = bonus;
         }
 
-        public void DoBaf(IPlayerable player)
+        public void DoBonus(IPlayerable player)
         {
-            player.IncreaseHealth(HealthBonus);
+            player.ReceiveHealthBonus(HealthBonus);
         }
     }
 }

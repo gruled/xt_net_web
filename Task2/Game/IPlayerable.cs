@@ -8,7 +8,7 @@ namespace Game
 {
     interface IPlayerable
     {
-        void DecreaseHealth(int i);
-        void IncreaseHealth(int i);
+        void ReceiveDamage(int i);
+        void ReceiveHealthBonus(int i);
     }
 }

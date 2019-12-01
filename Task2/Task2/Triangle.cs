@@ -17,13 +17,13 @@ namespace Task2
             get => _a;
             set
             {
-                if (value > 0)
+                if (value > 0 && (value < (B + C)))
                 {
                     _a = value;
                 }
                 else
                 {
-                    _a = 1;
+                    _a = (B+C)/2.0;
                 }
 
             }
@@ -34,13 +34,13 @@ namespace Task2
             get => _b;
             set
             {
-                if (value > 0)
+                if (value > 0 && (value < (A + C)))
                 {
                     _b = value;
                 }
                 else
                 {
-                    _b = 1;
+                    _b = (A + C) / 2.0;
                 }
 
             }
@@ -51,13 +51,13 @@ namespace Task2
             get => _c;
             set
             {
-                if (value > 0)
+                if (value > 0 && (value < (A + B)))
                 {
                     _c = value;
                 }
                 else
                 {
-                    _c = 1;
+                    _c = (A + B) / 2.0;
                 }
 
             }
@@ -65,9 +65,28 @@ namespace Task2
 
         public Triangle(double a, double b, double c)
         {
-            this.A = a;
-            this.B = b;
-            this.C = c;
+            if (_isRightTriangle(a,b,c))
+            {
+                this._a = a;
+                this._b = b;
+                this._c = c;
+            }
+            else
+            {
+                throw new ArgumentException("Сторона должна быть меньше двух других сторон");
+            }
+
+
+        }
+
+        private bool _isRightTriangle(double a, double b, double c)
+        {
+            if ((a < (b + c)) && (b < (a + c)) && (c < (a + b)) && a > 0 && b > 0 && c > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public double Perimeter => A + B + C;

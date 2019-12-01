@@ -9,58 +9,73 @@ namespace VectorGraphicsEditor
     class Rectangle : Figure
     {
         private double _width;
-        private double _height;
 
         public double Width
         {
             get => _width;
             set
             {
-                if (value >= 0.0)
+                if (value > 0)
                 {
                     _width = value;
+                    _area = _calcArea();
+                    _perimeter = _calcPerimeter();
                 }
                 else
                 {
-                    throw new ArgumentException("Ширина должна иметь положительное значение");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Width must be greater then 0");
                 }
             }
         }
+
+        private double _height;
 
         public double Height
         {
             get => _height;
             set
             {
-                if (value >= 0.0)
+                if (value > 0)
                 {
                     _height = value;
+                    _area = _calcArea();
+                    _perimeter = _calcPerimeter();
                 }
                 else
                 {
-                    throw new ArgumentException("Высота должна иметь положительное значение");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Height must be greater then 0");
                 }
             }
         }
 
-        public Rectangle(Vector2 centerPosition, double width, double height) : base(centerPosition)
+        private double _area;
+
+        public double Area => _area;
+
+        private double _calcArea()
         {
-            this.Width = width;
-            this.Height = height;
+            return Width * Height;
         }
 
-        public double Area => _width * _height;
+        private double _perimeter;
+        public double Perimeter => _perimeter;
 
-        public double Length => Width * 2 + Height * 2;
-
-        public override void GetDescription()
+        private double _calcPerimeter()
         {
-            base.GetDescription();
-            Console.WriteLine("Width: " + Width);
-            Console.WriteLine("Height: " + Height);
-            Console.WriteLine("Площадь: " + Area);
-            Console.WriteLine("Периметр: " + Length);
+            return Width + Width + Height + Height;
         }
 
+        public Rectangle(Vector2 position, double width, double height) : base(position)
+        {
+            Width = width;
+            Height = height;
+            _area = _calcArea();
+            _perimeter = _calcPerimeter();
+        }
+
+        public override string GetDescription()
+        {
+            return base.GetDescription() + " Width: " + Width + " Height: " + Height + " Area: " + Area + " Perimeter: " + Perimeter;
+        }
     }
 }

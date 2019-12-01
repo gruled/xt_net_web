@@ -43,20 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bonus.cs" />
-    <Compile Include="DinamicGameObject.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Apple.cs" />
+    <Compile Include="Bear.cs" />
+    <Compile Include="Cherry.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="IBuf.cs" />
-    <Compile Include="IDoDamage.cs" />
-    <Compile Include="IObstacle.cs" />
+    <Compile Include="IBonusable.cs" />
+    <Compile Include="IDamageable.cs" />
+    <Compile Include="IObstacleable.cs" />
     <Compile Include="IPlayerable.cs" />
+    <Compile Include="IWalkable.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Obstacle.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rock.cs" />
+    <Compile Include="Tree.cs" />
     <Compile Include="Vector2.cs" />
+    <Compile Include="Wolf.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

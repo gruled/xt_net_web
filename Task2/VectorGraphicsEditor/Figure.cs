@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor
 {
-    abstract class Figure
+    abstract class Figure : IDescriptionable
     {
-        public Vector2 CenterPosition;
+        public Vector2 Position { get; set; }
 
-        public Figure(Vector2 centerPosition)
+        protected Figure(Vector2 position)
         {
-            this.CenterPosition = centerPosition;
+            Position = position;
         }
 
-        public virtual void GetDescription()
+        public virtual String GetDescription()
         {
-            Console.WriteLine("Center position: " + CenterPosition.ToString());
+            return "Type: " + GetType().Name + " Position: " + Position.X + ", " + Position.Y;
         }
-
     }
 }

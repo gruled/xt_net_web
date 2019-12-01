@@ -8,19 +8,17 @@ namespace VectorGraphicsEditor
 {
     class Round : Circle
     {
-        public double Length => Math.PI * Radius * 2;
-
         public double Area => Math.PI * Radius * Radius;
 
-        public Round(Vector2 centerPosition, double radius) : base(centerPosition, radius)
+        public double Length => Math.PI * 2 * Radius;
+
+        public Round(Vector2 position, double radius) : base(position, radius)
         {
         }
 
-        public override void GetDescription()
+        public override string GetDescription()
         {
-            base.GetDescription();
-            Console.WriteLine("Length: " + Length);
-            Console.WriteLine("Area: " + Area);
+            return base.GetDescription() + " Area: " + Area + " Length: " + Length;
         }
     }
 }

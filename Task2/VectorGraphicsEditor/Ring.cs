@@ -6,57 +6,39 @@ using System.Threading.Tasks;
 
 namespace VectorGraphicsEditor
 {
-    class Ring : Circle
+    class Ring : Round
     {
         private double _outerRadius;
+
         public double OuterRadius
         {
             get => _outerRadius;
             set
             {
-                if (value >= 0 && value >= base.Radius)
+                if (value > 0 && value > Radius)
                 {
                     _outerRadius = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Внешний радиус должен иметь положительное значение и быть больше внутреннего радиуса");
+                    throw new ArgumentOutOfRangeException(nameof(value),
+                        "Outer radius must be greater then 0 and greater then radius");
                 }
             }
         }
 
-        public double InnerRadius
-        {
-            get => base.Radius;
-            set
-            {
-                if (value >= 0 && value <= _outerRadius)
-                {
-                    base.Radius = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Внутренний радиус должен иметь положительное значение и быть меньше внешнего радиуса");
-                }
-            }
-        }
-
-        public double Length => Math.PI * (InnerRadius * 2 + OuterRadius * 2);
-
-        public double Area => Math.PI * (OuterRadius * OuterRadius - InnerRadius * InnerRadius);
-
-        public Ring(Vector2 centerPosition, double innerRadius, double outerRadius) : base(centerPosition, innerRadius)
+        public Ring(Vector2 position, double innerRadius, double outerRadius) : base(position, innerRadius)
         {
             OuterRadius = outerRadius;
-            InnerRadius = innerRadius;
         }
 
-        public override void GetDescription()
+        public new double Area => Math.PI * (OuterRadius * OuterRadius - Radius * Radius);
+
+        public new double Length => Math.PI * (OuterRadius * 2 + Radius * 2);
+
+        public override string GetDescription()
         {
-            base.GetDescription();
-            Console.WriteLine("Outer radius: " + OuterRadius);
-            Console.WriteLine("Длина: " + Length);
-            Console.WriteLine("Площадь: " + Area);
+            return base.GetDescription() + " Outer radius: " + OuterRadius;
         }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Program
+    class Tree : GameObject, IObstacleable
     {
-        static void Main(string[] args)
+        public Tree(Vector2 position) : base(position)
         {
+
         }
     }
 }

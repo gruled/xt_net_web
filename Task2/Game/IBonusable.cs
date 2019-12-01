@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    interface IDoDamage
+    interface IBonusable
     {
-        void DoDamage(IPlayerable playerable);
+        void DoBonus(IPlayerable player);
     }
 }

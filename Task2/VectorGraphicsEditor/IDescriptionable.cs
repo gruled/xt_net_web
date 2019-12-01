@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace VectorGraphicsEditor
 {
-    class Program
+    interface IDescriptionable
     {
-        static void Main(string[] args)
-        {
-        }
+        string GetDescription();
     }
 }

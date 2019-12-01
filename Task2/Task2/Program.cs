@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,12 +28,15 @@ namespace Task2
 
         static void Round2_1()
         {
+            Console.WriteLine("Создаем круг сос сторонами 3, 5, 6");
             Round round = new Round(3, 5, 6);
             Console.WriteLine("Площадь круга: " + round.Area);
             Console.WriteLine("Длина круга: " + round.Length);
             round.X = 1.2;
             round.Y = 2.2;
+            Console.WriteLine("Пытаемся присвоить радиусу неверное значение: -10");
             round.Radius = -10;//заведомо неправильное значение
+            Console.WriteLine("Выводим значение радиуса: "+round.Radius+ " (сработала проверка и подставила свое верное значение)");
             Console.WriteLine("Площадь круга: " + round.Area);
             Console.WriteLine("Длина круга: " + round.Length);
         }
@@ -40,10 +44,13 @@ namespace Task2
 
         static void Triangle2_2()
         {
-            Triangle triangle = new Triangle(13, 4, 5);
+            Triangle triangle = new Triangle(3, 4, 5);
             Console.WriteLine("Площадь треугольника: " + triangle.Area);
             Console.WriteLine("Периметр треугольника: " + triangle.Perimeter);
+            int i = -9;
+            Console.WriteLine("Пытаемся ввести неправильное значение стороны А: "+i);
             triangle.A = -9;
+            Console.WriteLine("Выводим значение А после попытки ввода неправильного значения: "+triangle.A+" (сработала проверка и подставила свое верное значение)");
             Console.WriteLine("Новая площадь треугольника: " + triangle.Area);
             Console.WriteLine("Новый периметр треугольника: " + triangle.Perimeter);
         }
@@ -88,7 +95,7 @@ namespace Task2
             Console.WriteLine("Теперь изменяем значение радиуса на неправильное");
             ring.OuterRadius = -9.6;//заведомо неправильные данные внешнего радиуса
             Console.WriteLine("Внешний радиус: " + ring.OuterRadius);
-            Console.WriteLine("Внутренний радиус: " + ring.InnerRadius);
+            Console.WriteLine("Внутренний радиус: " + ring.InnerRadius+ " (сработала проверка и подставила свое верное значение)");
             Console.WriteLine("Площадь: " + ring.Area);
             Console.WriteLine("Длина: " + ring.Length);
         }
