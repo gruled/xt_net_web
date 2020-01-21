@@ -1,0 +1,32 @@
+body{
+    background-color: black;
+}
+.back{
+    border-style: solid;
+    border-color: white;
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    margin: auto;
+    background: linear-gradient(to bottom, white, rgb(221,221,221));
+    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%,
+    0% 10%, 25% 10%);
+}
+.contentText{
+    margin-top: 10%;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+.title{
+    position: absolute;
+    color: rgb(255,177,99);
+    margin-top: 5px;
+    margin-left: calc(50% - 230px);
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 100;
+}

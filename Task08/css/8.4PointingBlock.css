@@ -1,0 +1,35 @@
+.Rect{
+    background-color: #88b7d5;
+    height: 100px;
+    position: relative;
+    top: 0;
+    margin: 50px 20px;
+    box-shadow: 0 0 0px 5px #c2e1f5;
+    text-align: center;
+}
+.Rect::after, .Rect::before{
+    content: '';
+    background-color: #88b7d5;
+    position: absolute;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 0 0px 5px #c2e1f5;
+    top: -15px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.Rect::before{
+    z-index: 1;
+    box-shadow: none;
+}
+.Text{
+    font-weight: lighter;
+    color: white;
+    font-size: 24px;
+}
+.Txt{
+    position: relative;
+    z-index: 2;
+    padding-top: 20px;
+}

@@ -1,0 +1,48 @@
+
+.item{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-color: #dedede;
+    text-align: center;
+}
+.item:hover{
+    background-color: #69c725;
+}
+h3{
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-top: 12px;
+    color: black;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 24px;
+}
+.item:hover h3{
+    color: white;
+}
+@supports(-webkit-appearance: none){
+    .middle{
+        background: linear-gradient(to bottom, rgb(222, 222, 222),rgb(191, 191, 191),rgb(222, 222, 222));
+        clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%);
+    }
+    .middle:hover{
+        background: linear-gradient(to bottom, rgb(174, 225, 136),rgb(100, 197, 29),rgb(174, 225, 136));;
+    }
+    .first{
+        background: linear-gradient(to bottom, rgb(222, 222, 222),rgb(191, 191, 191),rgb(222, 222, 222));
+        clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+    }
+    .first:hover{
+        background: linear-gradient(to bottom, rgb(174, 225, 136),rgb(100, 197, 29),rgb(174, 225, 136));;
+    }
+    .last{
+        background: linear-gradient(to bottom, rgb(222, 222, 222),rgb(191, 191, 191),rgb(222, 222, 222));
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 10% 50%);
+    }
+    .last:hover{
+        background: linear-gradient(to bottom, rgb(174, 225, 136),rgb(100, 197, 29),rgb(174, 225, 136));;
+    } 
+}

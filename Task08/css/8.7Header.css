@@ -1,0 +1,33 @@
+.back{
+    position: absolute;
+    height: 70px;
+    left: 0;
+    right: 0;
+    margin: 10px 10px;
+    background-color: #008b66;
+}
+.content{
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    background-color: #dfe6e1;
+    right: 0;
+    top: 80%;
+    width: 90%;
+    height: auto;
+}
+body{
+    margin: 0;
+}
+.headerText{
+    color: white;
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 10px;
+}
+.contentText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    margin: 10px 10px;
+}

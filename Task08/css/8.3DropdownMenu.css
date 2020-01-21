@@ -1,0 +1,48 @@
+.Main{
+    margin: auto 10px;
+    position: relative;
+    display: inline-block;
+}
+.Content{
+    display: none;
+    position: absolute;
+    width: 100px;
+    box-shadow: 0px 0px 5px 0px gray ;
+}
+.Main:hover .Content{
+    display: block;
+}
+button{
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    background-color: white;
+    text-align: left;
+    border-style: solid;
+    border-width: 0px;
+
+}
+button:hover{
+    background-color: #37abff;
+}
+h3{
+    font-family: 'Times New Roman', Times, serif;
+    color: blue;
+    font-weight: lighter;
+    margin: 2px auto;
+}
+.Title{
+    text-decoration: underline;
+}
+.Main:hover .Title{
+    color: black;
+    text-decoration: none;
+}
+button:hover h3{
+    color: white;
+}
+.Main:hover{
+    box-shadow: 0px 0px 5px 0px gray ;
+}

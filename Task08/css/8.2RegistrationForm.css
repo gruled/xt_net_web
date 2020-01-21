@@ -1,0 +1,47 @@
+.RegistrationContainer{
+    width: 500px;
+    background-color: rgb(6, 144, 207);
+    border: solid;
+    border-color: rgb(0, 117, 178);
+    border-width: 2px;
+}
+.Button{
+    background-color: rgb(255, 223, 127);
+    border: none;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    height: 25px;
+}
+.Line{
+    border: none;
+}
+.Title{
+    color: white;
+    font-family: sans-serif;
+    font-weight: lighter;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+.LargeInput{
+    margin-left: 25px;
+    border: none;
+    max-width: 400px;
+    height: 20px;
+}
+.NormalText{
+    color:white;
+    font-family: sans-serif;
+    font-weight: lighter;
+    margin-left: 25px;
+    margin-bottom: 3px;
+}
+.Blocks{
+    display: inline-block;
+}
+.SmallInput{
+    margin-left: 25px;
+    border: none;
+    max-width: 185px;
+    height: 20px;
+}

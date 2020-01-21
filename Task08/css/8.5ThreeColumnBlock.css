@@ -1,0 +1,70 @@
+body{
+    background-color: #4e6379;
+    height: 100%;
+}
+.M{
+    background-color: white;
+    width: 600px;
+    height: auto;
+    margin: auto;
+    border-radius: 3px;
+    box-shadow: 0 10px 25px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+.Adv{
+    display: inline-block;
+    margin: 5px 0;
+    width: 30%;
+    height: auto;
+}
+.img1{
+    overflow: hidden;
+    clip-path: inset(0px 0px 84px 0px);
+    margin-bottom: -88px;
+    margin-top: 0px;
+}
+.img2{
+    overflow: hidden;
+    clip-path: inset(42px 0px 42px 0px);
+    margin-bottom: -46px;
+    margin-top: -42px;
+}
+.img3{
+    overflow: hidden;
+    clip-path: inset(84px 0px 0px 0px);
+    margin-bottom: -4px;
+    margin-top: -84px;
+}
+.imageContainer{
+    margin: 0px 10px;
+}
+.Name{
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #f56332;
+}
+.Cost{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    font-weight: lighter;
+}
+.More{
+    background-color:  #f56332;
+    border: none;
+    height: 25px;
+    border-radius: 2px;
+}
+.MoreText{
+    color: white;
+    font-weight: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0 auto;
+    font-size: 14px;
+}
+.Line{
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 0.5px;
+    display: inline-block;
+    height: 120px;
+}
