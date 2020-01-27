@@ -1,0 +1,347 @@
+html,body{
+    margin: 0 auto;
+    background-color: #edeef0;
+}
+.headerBack{
+    position: fixed;
+    height: 42px;
+    width: 100%;
+    background-color: #4a76a8;
+    margin: 0 auto;
+    z-index: 1;
+}
+.headerContent{
+    height: 100%;
+    width: 940px;
+    border: 0.0px solid red;
+    margin: 0 auto;
+}
+.logoButton{
+    border: 0.0px solid green;
+    height: 100%;
+    width: 165px;
+    display: inline-block;
+}
+.imn{
+    position: relative;
+    display: block;
+    top: calc(50% - 10px);
+    margin: 0 auto;
+}
+.log{
+    position: relative;
+    display: block;
+    top: calc(50% - 9px);
+}
+.a{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.logo{
+    position: relative;
+    display: block;
+    height: 42px;
+    width: 165px;
+    left: calc(50% - 435px);
+    text-align: left;
+    padding-top: 10px;
+    z-index: 200;
+    float: left;
+}
+.search{
+    display: inline-block;
+    text-decoration: none;
+    width: 230px;
+    height: 25px;
+    margin-top: 0;
+    border-radius: 14px;
+    border-style: none;
+    background: #224b7a url("img/ic_head_loupe.svg") no-repeat;
+}
+.notifyButton{
+    background: none;
+    border: none;
+}
+.nofications{
+    position: absolute;
+    display: inline-block;
+}
+.notify{
+    display: inline-block;
+    width: 40px;
+    height: 100%;
+    vertical-align: middle;
+    margin-left: 10px;
+    background-color: #4a76a8;
+}
+.notify:hover{
+    background-color: #2a5885;
+}
+.music{
+    vertical-align: middle;
+    display: inline-block;
+    width: 200px;
+    max-width: 300px;
+    height: 100%;
+    cursor: pointer;
+}
+.music:hover{
+    background-color: #2a5885;
+}
+.musIcon{
+    position: relative;
+    display: block;
+    top: calc(50% - 10px);
+    margin: 0 auto;
+}
+.profile{
+    vertical-align: middle;
+    display: inline-block;
+    cursor: pointer;
+    right: 0;
+    height: 100%;
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.profile:hover{
+    background-color: #2a5885;
+}
+.Name{
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 5px;
+    color: white;
+    font-weight: bolder;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.myPicture{
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 50px;
+    max-height: 50px;
+    clip-path: circle();
+    margin: 0 auto;
+    margin-top: -12px;
+}
+.settingsItem{
+    width: 99%;
+    height: 30px;
+    margin: 1px auto;
+}
+.settingsItem:hover{
+    background-color: #f0f2f5;
+}
+.setItText{ 
+    display: inline-block;
+    margin: 0 auto;
+    margin-left: 15px;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    color: #4a76a8;
+}
+.settingsItem:hover .setItText{
+    color: black;
+}
+.contentExpTitle{
+    margin: 5 auto;
+    margin-left: 15px;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+}
+.content{
+    position: absolute;
+    width: 940px;
+    border: 0.0px solid blue;
+    height: auto;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+.menu{
+    position: relative;
+    display: inline-block;
+    border: 0.0px solid green;
+    width: 160px;
+    height: auto;
+}
+.settingsExp{
+    position: relative;
+    display: inline-block;
+    border: 0.1px solid grey;
+    background-color: white;
+    border-radius: 3px;
+    width: 550px;
+    height: auto;
+    vertical-align: top;
+    margin-right: 15px;
+    padding-bottom: 15px;
+}
+.vl{
+    display: inline-block;
+    vertical-align: middle;
+    width: 3px;
+    height: 99%;
+    background-color: rgba(0, 0, 0, 0.0);
+}
+.settingsItem:hover .vl{
+    background-color: #5181b8;
+}
+.settings{
+    position: fixed;
+    display: inline-block;
+    border: 0.1px solid grey;
+    background-color: white;
+    border-radius: 3px;
+    width: 220px;
+    height: auto;
+}
+.item{
+    width: 100%;
+    border: 0.0px solid orange;
+    margin: 0px auto;
+    padding-top: 5px ;
+    padding-bottom: 5px;
+}
+.it{
+    text-decoration: none;
+}
+.item:hover{
+    background-color: #e1e5eb;
+}
+.ic1{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 20px, 0% 20px);
+    margin-bottom: -1055px;
+
+}
+.ic2{
+    clip-path: polygon(0% 920px, 100% 920px, 100% 940px, 0% 940px);
+    margin-bottom: -910px;
+    margin-top: -1700px;
+}
+.ic3{
+    clip-path: polygon(0% 20px, 100% 20px, 100% 40px, 0% 40px);
+    margin-bottom: -1040px;
+    margin-top: -40px;
+}
+.ic{
+    vertical-align: middle;
+    display: inline-block;
+}
+.itemTitle{
+    display: inline;
+    color: #4a76a8;
+    text-decoration: none;
+    font-size: 12.5px;
+    margin: 0 auto;
+    margin-left: 10px;
+    font-weight: lighter;
+    font-family: sans-serif;
+}
+.ic4{
+    clip-path: polygon(0% 70px, 100% 70px, 100% 100px, 0% 100px);
+    margin-bottom: -1040px;
+    margin-top: -150px;
+}
+.ic5{
+    clip-path: polygon(0% 100px, 100% 100px, 100% 130px, 0% 130px);
+    margin-bottom: -1040px;
+    margin-top: -205px;
+}
+.ic6{
+    clip-path: polygon(0% 140px, 100% 140px, 100% 160px, 0% 160px);
+    margin-bottom: -1040px;
+    margin-top: -260px;
+}
+.ic7{
+    clip-path: polygon(0% 165px, 100% 165px, 100% 190px, 0% 190px);
+    margin-bottom: -1040px;
+    margin-top: -315px;
+}
+.ic8{
+    clip-path: polygon(0% 190px, 100% 190px, 100% 210px, 0% 210px);
+    margin-bottom: -1040px;
+    margin-top: -375px;
+}
+.ic9{
+    clip-path: polygon(0% 210px, 100% 210px, 100% 240px, 0% 240px);
+    margin-bottom: -1040px;
+    margin-top: -430px;
+}
+.ic10{
+    clip-path: polygon(0% 1020px, 100% 1020px, 100% 1050px, 0% 1050px);
+    margin-bottom: -1040px;
+    margin-top: -2045px;
+}
+.ic11{
+    clip-path: polygon(0% 945px, 100% 945px, 100% 970px, 0% 970px);
+    margin-bottom: -1040px;
+    margin-top: -1885px;
+}
+.ic12{
+    clip-path: polygon(0% 300px, 100% 300px, 100% 330px, 0% 330px);
+    margin-bottom: -1040px;
+    margin-top: -600px;
+}
+.ic13{
+    clip-path: polygon(0% 280px, 100% 280px, 100% 300px, 0% 300px);
+    margin-bottom: -1040px;
+    margin-top: -545px;
+}
+.myHr{ 
+    width: 75%;
+    margin-right: 15px;
+    border: 0.5px solid rgba(0, 0, 0, 0.05);
+}
+.myHr1{
+    width: 95%;
+    margin-right: 15px;
+    border: 0.5px solid rgba(0, 0, 0, 0.05);
+}
+.settingsExpItem{
+    width: 100%;
+    margin: 20px auto;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.settingsExpItemTitle{
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: grey;
+    font-size: 13px;
+}
+.settingsExpItemValue{
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 13px;
+    max-width: 200px;
+    margin-top: -16px;
+}
+.settingsExpItemOption{
+    position: absolute;
+    right: 0;
+    margin: 0 auto;
+    margin-right: 15px;
+    font-size: 13px;
+    max-width: 200px;
+    margin-top: -16px;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: #4a76a8;
+}
