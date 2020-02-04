@@ -1,4 +1,4 @@
-function hhe(inSelect, outSelect) {
+function sendSmall(inSelect, outSelect) {
     var objSel = document.getElementById(outSelect);
     var objSelSec = document.getElementById(inSelect);
     var optionSel = objSel.options;
@@ -21,7 +21,7 @@ function getSelectedIndexes(oListbox) {
     }
     return arrIndexes;
 }
-function hhq(inSelect, outSelect) {
+function sendAll(inSelect, outSelect) {
     var objSel = document.getElementById(outSelect);
     var objSelSec = document.getElementById(inSelect);
     var objSelLength = objSel.options.length;
