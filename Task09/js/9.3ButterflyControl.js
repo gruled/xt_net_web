@@ -11,7 +11,7 @@ function sendSmall(inSelect, outSelect) {
         }
     }
     else{
-        alert("empty output");
+        alert("Нет выделенных элементов");
     }
 }
 function getSelectedIndexes(oListbox) {
