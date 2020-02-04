@@ -1,0 +1,16 @@
+.f{
+    width: 200px;
+}
+.field{
+    display: inline-block;
+    vertical-align: middle;
+}
+.non{
+    display: grid;
+}
+.cont{
+    text-align: center;
+}
+h3{
+    margin: 0 auto;
+}
