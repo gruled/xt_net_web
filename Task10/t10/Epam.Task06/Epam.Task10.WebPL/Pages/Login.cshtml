@@ -1,0 +1,14 @@
+﻿@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+@{
+    string name = null;
+    string password = null;
+    name = Request["Name"];
+    password = Request["Password"];
+    if (IsPost)
+    {
+        DependencyResolver.AuthUserLogic.Add(new AuthUser(){Id = 1,Name = name, Password = password, IsAdmin = false});
+        FormsAuthentication.SetAuthCookie(name, createPersistentCookie: true);
+        Response.Redirect("~");
+    }
+}

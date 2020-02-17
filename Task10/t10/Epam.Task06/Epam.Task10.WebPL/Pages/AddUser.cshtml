@@ -1,0 +1,59 @@
+﻿@using System.Text.RegularExpressions
+@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin") || !User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+    if (IsPost)
+    {
+        string pattern = @"\d*";
+        List<int> list = new List<int>();
+        MatchCollection matches = Regex.Matches(Request["award"], pattern);
+        for (int i = 0; i < matches.Count; i++)
+        {
+            if (matches[i].Value != "")
+            {
+                list.Add(Int32.Parse(matches[i].Value));
+            }
+        }
+        DependencyResolver.UserLogic.Add(new User() { Name = Request["name"], DateOfBirth = DateTime.Parse(Request["dateOfBirth"]), Age = int.Parse(Request["Age"]), Awards = list });
+        Response.Redirect("~");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("_TitlePartial.cshtml")
+        <div style="background-color: gainsboro;">
+            <form enctype="multipart/form-data" action="~/Pages/AddUser.cshtml" method="post">
+                <div>
+                    <label class="lb" style="margin-right: 40px">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="Name">
+                </div>
+                <div>
+                    <label class="lb" style="margin-right: 40px">Дата рождения</label><input class="form-control, lb" style="width: 200px; height: 30px" type="datetime" name="dateOfBirth" />
+                </div>
+                <div>
+                    <label class="lb" style="margin-right: 40px">Возраст</label><input class="form-control, lb" style="width: 200px; height: 30px" type="number" name="age">
+                </div>
+                <div>
+                    <label class="lb" style="margin-right: 40px">Награда(через пробел)</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="award">
+                </div>
+                <button class="btn-primary" style="width: 200px; margin-left: 110px">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿@using System.Configuration
+@using Epam.Task06.BLL
+@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+
+@{
+    Layout = "Layouts/_MainLayout.cshtml";
+
+    var a = DependencyResolver.UserLogic.GetAll();
+    var awardsEnumerable = DependencyResolver.AwardLogic.GetAll();
+}
+@if (User.IsInRole("Admin"))
+{
+    <div class="bg-info">Инструменты администратора</div>
+    <div class="bt">
+        <button id="addUser" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Добавление пользователя</button>
+    </div>
+    <div class="bt">
+        <button id="addAward" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Добавление награды</button>
+    </div>
+    <div class="bt">
+        <button id="manageUsers" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Упраление зарегист. пользователями</button>
+    </div>
+
+    <script>
+        $('#manageUsers').click(function () {
+            location.href = '/Pages/ManageUsers';
+        })
+        $('#addAward').click(function () {
+            location.href = '/Pages/AddAward';
+        })
+        $('#addUser').click(function () {
+            location.href = '/Pages/AddUser';
+        })
+    </script>
+}
+@if (User.IsInRole("Admin"))
+{
+    if (awardsEnumerable.Any())
+    {
+        <div class="bg-info">Список наград</div>
+
+        foreach (var award in awardsEnumerable)
+        {
+            <div style="background-color:gainsboro;">
+                @{ string s = "#" + award.Title; }
+                <div style="background-color: gainsboro;">
+                    <div class="text-info" style="margin: 10px 10px">Имя: @award.Title</div>
+                </div>
+                <form action="~/Pages/UpdateAward.cshtml" method="post">
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@award.Id" />
+                    <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Редактировать</button>
+                </form>
+                <form action="~/Pages/DeleteAward.cshtml" method="post">
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@award.Id" />
+                    <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Удалить</button>
+                </form>
+            </div>
+        }
+    }
+}
+
+@if (a.Any())
+{
+    <div class="bg-info">Список пользователей</div>
+    foreach (var item in a)
+    {
+<div style="background-color: gainsboro;">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="text-info" style="margin: 10px 10px">Номер: @item.Id</div>
+    }
+    <div class="text-info" style="margin: 10px 10px">Имя: @item.Name</div>
+    <div class="text-info" style="margin: 10px 10px">Возраст: @item.Age</div>
+    <div class="text-info" style="margin: 10px 10px">Дата рождения: @item.DateOfBirth</div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (item.Awards.Count > 0)
+        {
+            <div class="text-info" style="margin: 10px 10px">Награды:</div>
+            List<Award> awards = (List<Award>)DependencyResolver.AwardLogic.GetAll();
+            foreach (var award in item.Awards)
+            {
+                if (awards.Count(x => x.Id == award) > 0)
+                {
+                    <div class="text-info" style="margin: 10px 10px"> @awards.FirstOrDefault(x => x.Id == award).Title</div>
+                }
+            }
+        }
+        if (User.IsInRole("Admin"))
+        {
+            string s = "#" + item.Name;
+            <form action="~/Pages/UpdateUser.cshtml" method="post">
+                <input style="width: 0px; height: 0px; margin: 0 0" name="userName" hidden value="@item.Name" />
+                <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Редактировать</button>
+            </form>
+            <form action="~/Pages/DeleteUser.cshtml" method="post">
+                <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@item.Id" />
+                <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Удалить</button>
+            </form>
+        }
+    }
+</div>
+    }
+}
+else
+{
+    <div class="bg-info">Список пользователей пуст</div>
+}

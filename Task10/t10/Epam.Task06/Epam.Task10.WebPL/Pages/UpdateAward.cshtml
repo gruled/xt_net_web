@@ -1,0 +1,44 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin"))
+    {
+        Response.Redirect("~");
+    }
+    int id = -1;
+    string title = "";
+    if (IsPost)
+    {
+        id = int.Parse(Request["id"]);
+        var users = DependencyResolver.AwardLogic.GetAll();
+        title = users.Where(item => item.Id == id).First().Title;    
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("_TitlePartial.cshtml")
+        <div class="bg-info">Редактирование награды</div>
+        <div style="background-color: gainsboro;">
+            <form enctype="multipart/form-data" action="~/Pages/UpdateAwardNext.cshtml" method="post">
+                
+                <div>
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="idUpdate" hidden value="@id" />
+                    <label class="lb" style="margin-right: 5px">Название</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="title" value="@title">
+                </div>
+                <button class="btn-primary" style="width: 200px; margin-left: 85px">Изменить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

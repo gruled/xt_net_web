@@ -1,0 +1,51 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin")||!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("~/Pages/_TitlePartial.cshtml")
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="bg-info">Список зарегистрированных пользователей</div>
+            var users = DependencyResolver.AuthUserLogic.GetAllAuthUsers();
+            foreach (var item in users)
+            {
+                string s = item.Name;
+                <div style="background-color:gainsboro;">
+                    <div class="text-info" style="margin: 10px 10px">Имя: @item.Name</div>
+                    @if (@item.IsAdmin)
+                    {
+                        <div class="text-info" style="margin: 10px 10px">Статус: администратор</div>
+                    }
+                    @if (!@item.IsAdmin)
+                    {
+                        <div class="text-info" style="margin: 10px 10px">Статус: пользователь</div>
+                    }
+                    <div>
+                        <form action="~/Pages/ChangeRole.cshtml" method="post">
+                            <input style="width: 0px; height: 0px; margin: 0 0" name="authName" value="@s" />
+                            <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Изменить права</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin") || !User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+    var fileName ="";
+    if (IsPost)
+    {
+        var fileSavePath = "";
+        var uploadedFile = Request.Files[0];
+        fileName = Path.GetFileName(uploadedFile.FileName);
+        fileSavePath = Server.MapPath("~/Data/" +
+                                      Guid.NewGuid().ToString() + Path.GetExtension(uploadedFile.FileName));
+        uploadedFile.SaveAs(fileSavePath);
+        DependencyResolver.AwardLogic.Add(new Award(){ Title = Request["name"]});
+        Response.Redirect("~");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("~/Pages/_TitlePartial.cshtml")
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="bg-info">Редактирование пользователя</div>
+            <div style="background-color: gainsboro;">
+                <form enctype="multipart/form-data" action="~/Pages/AddAward.cshtml" method="post">
+                    <div>
+                        <label class="lb">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px;margin-left: 15px" type="text" name="name" />
+                    </div>
+                    <div>
+                        <label class="lb">Файл</label><input class="form-control, lb" style="width: 200px; height: 30px;margin-left: 15px" type="file" accept="image/jpeg,image/png" name="file" />
+                    </div>
+                    <button class="btn-primary" style="width: 200px; margin-left: 85px">Сохранить</button>
+                </form>
+            </div>
+        }
+    </div>
+</body>
+</html>

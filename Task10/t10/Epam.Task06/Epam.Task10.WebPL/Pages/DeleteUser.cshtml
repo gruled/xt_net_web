@@ -1,0 +1,14 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    if (User.IsInRole("Admin"))
+    {
+        int id = 0;
+        id = int.Parse(Request["id"]);
+        DependencyResolver.UserLogic.DeleteById(id);
+        Response.Redirect("~");
+    }
+    else
+    {
+        Response.Redirect("~");
+    }
+}

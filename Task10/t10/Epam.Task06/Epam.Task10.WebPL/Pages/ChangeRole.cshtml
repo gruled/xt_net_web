@@ -1,0 +1,10 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    if (IsPost)
+    {
+        string name = Request["authName"];
+        DependencyResolver.AuthUserLogic.ChangeAdmin(name);
+        Response.Redirect("~");
+    }
+}
+

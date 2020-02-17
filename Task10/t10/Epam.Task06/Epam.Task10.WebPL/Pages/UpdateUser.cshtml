@@ -1,0 +1,51 @@
+﻿@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+@{
+    Layout = null;
+    var users = DependencyResolver.UserLogic.GetAll();
+    User c = users.Where(item => item.Name.Equals(Request["userName"])).First();
+    string awards = "";
+    foreach (var item in c.Awards)
+    {
+        awards += item.ToString() + " ";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("_TitlePartial.cshtml")
+        <div class="bg-info">Редактирование пользователя</div>
+        <div style="background-color: gainsboro;">
+            <form enctype="multipart/form-data" action="~/Pages/UpdateUserNext.cshtml" method="post">
+                <div>
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="userNamePrev" hidden value="@c.Name" />
+                    <label class="lb" style="margin-right: 40px">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="Name" value="@c.Name">
+                </div>
+                <div>
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="dateOfBirthPrev" hidden value="@c.DateOfBirth" />
+                    <label class="lb" style="margin-right: 40px">Дата рождения</label><input class="form-control, lb" style="width: 200px; height: 30px" type="datetime" name="dateOfBirth" value="@c.DateOfBirth" />
+                </div>
+                <div>
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="agePrev" hidden value="@c.Age" />
+                    <label class="lb" style="margin-right: 40px">Возраст</label><input class="form-control, lb" style="width: 200px; height: 30px" type="number" name="age" value="@c.Age">
+                </div>
+                <div>
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="awardPrev" hidden value="@awards" />
+                    <label class="lb" style="margin-right: 40px">Награда(через пробел)</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="award" value="@awards">
+                </div>
+                <button class="btn-primary" style="width: 200px; margin-left: 120px">Изменить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

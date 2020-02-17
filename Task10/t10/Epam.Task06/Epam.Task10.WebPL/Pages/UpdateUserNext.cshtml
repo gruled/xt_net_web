@@ -1,0 +1,36 @@
+﻿@using System.Text.RegularExpressions
+@using Epam.Task06.DependencyResolver
+@using Epam.Task06.Entities
+@{
+    if (User.IsInRole("Admin"))
+    {
+        string pattern = @"\d*";
+        List<int> list = new List<int>();
+        MatchCollection matches = Regex.Matches(Request["awardPrev"], pattern);
+        for (int i = 0; i < matches.Count; i++)
+        {
+            if (matches[i].Value != "")
+            {
+                list.Add(Int32.Parse(matches[i].Value));
+            }
+        }
+        List<int> listNext = new List<int>();
+        matches = Regex.Matches(Request["award"], pattern);
+        for (int i = 0; i < matches.Count; i++)
+        {
+            if (matches[i].Value != "")
+            {
+                listNext.Add(Int32.Parse(matches[i].Value));
+            }
+        }
+        User before = new User(){Age = int.Parse(Request["agePrev"]), Name = Request["userNamePrev"], DateOfBirth = DateTime.Parse(Request["dateOfBirthPrev"]), Awards = list};
+        User next = new User(){Age = int.Parse(Request["age"]), Name = Request["name"], DateOfBirth = DateTime.Parse(Request["dateOfBirth"]), Awards = listNext};
+        DependencyResolver.UserLogic.UpdateUser(before, next);
+        Response.Redirect("~");
+        
+    }
+    else
+    {
+        Response.Redirect("~");
+    }
+}

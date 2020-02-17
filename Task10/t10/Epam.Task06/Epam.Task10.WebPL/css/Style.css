@@ -1,0 +1,24 @@
+﻿.Titles {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 5px;
+    height: 100%;
+    background-color: darkcyan;
+}
+body {
+    margin: 0 auto;
+}
+.lb {
+    width: 60px;
+    display: inline-block;
+    margin-left: 10px;
+    
+}
+.bt{
+    margin: 5px 10px;
+    margin-left: 0;
+}
+.reg {
+    display: inline-block;
+    position: absolute;
+}
