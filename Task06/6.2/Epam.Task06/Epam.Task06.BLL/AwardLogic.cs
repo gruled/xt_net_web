@@ -3,27 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Interfaces;
+using Entities;
 using Epam.Task06.BLL.Interfaces;
-using Epam.Task06.DAL.Interfaces;
-using Epam.Task06.Entities;
 
 namespace Epam.Task06.BLL
 {
     public class AwardLogic : IAwardLogic
     {
         private readonly IAwardDAO _awardDao;
-        public AwardLogic(IAwardDAO awardDao)
+        private readonly IUsersAndAwardsDAO _usersAndAwardsDao;
+
+        public AwardLogic(IAwardDAO awardDao, IUsersAndAwardsDAO usersAndAwardsDao)
         {
-            _awardDao = awardDao;
+            this._awardDao = awardDao;
+            this._usersAndAwardsDao = usersAndAwardsDao;
         }
-        public int Add(Award award)
+        public void Add(Award award)
         {
-            return _awardDao.Add(award);
+            _awardDao.Add(award);
+        }
+
+        public void DeleteById(int id)
+        {
+            _awardDao.DeleteById(id);
+            _usersAndAwardsDao.DeleteLinkByAwardId(id);
         }
 
         public IEnumerable<Award> GetAll()
         {
             return _awardDao.GetAll();
+        }
+
+        public Award GetAwardById(int id)
+        {
+            return _awardDao.GetAwardById(id);
+        }
+
+        public void Update(int id, Award newAward)
+        {
+            _awardDao.Update(id, newAward);
         }
     }
 }

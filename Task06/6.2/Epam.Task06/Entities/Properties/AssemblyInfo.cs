@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Epam.Task06.DAL.Interfaces")]
+[assembly: AssemblyTitle("Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Epam.Task06.DAL.Interfaces")]
+[assembly: AssemblyProduct("Entities")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("0897d648-e88a-4980-9dae-bf9dbad8944c")]
+[assembly: Guid("3d0986e1-32aa-40ef-afe0-3ba770d9c1d7")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

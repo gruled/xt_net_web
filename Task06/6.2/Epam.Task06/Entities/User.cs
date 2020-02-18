@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.Task06.Entities
+namespace Entities
 {
-    public class User
+    public struct User
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
-        public List<int> Awards { get; set; }
     }
 }

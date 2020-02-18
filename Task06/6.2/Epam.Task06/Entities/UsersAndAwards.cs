@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.Task06.Entities
+namespace Entities
 {
-    public class Award
+    public struct UsersAndAwards
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
+        public int IdUser { get; set; }
+        public int IdAward { get; set; }
     }
 }

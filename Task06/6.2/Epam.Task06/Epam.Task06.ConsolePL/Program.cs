@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
 
 namespace Epam.Task06.ConsolePL
 {
@@ -10,8 +11,9 @@ namespace Epam.Task06.ConsolePL
     {
         static void Main(string[] args)
         {
-            Tools.ReadFilePath();
-            Tools.WorkWithFile();
+
+            Tools tools = new Tools();
+            tools.Run();
         }
     }
 }

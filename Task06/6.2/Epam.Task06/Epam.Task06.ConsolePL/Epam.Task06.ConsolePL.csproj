@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79713686-9150-4CBE-9310-1D8E755EEAD4}</ProjectGuid>
+    <ProjectGuid>{D714FAA3-0B06-40D0-934A-52826E6CB3E2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Epam.Task06.ConsolePL</RootNamespace>
     <AssemblyName>Epam.Task06.ConsolePL</AssemblyName>
@@ -34,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,17 +51,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL.Interfaces\Epam.Task06.DAL.Interfaces.csproj">
+      <Project>{902a513b-5c0f-43e7-99d7-e0c92838199a}</Project>
+      <Name>Epam.Task06.DAL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3d0986e1-32aa-40ef-afe0-3ba770d9c1d7}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Epam.Task06.BLL.Interfaces\Epam.Task06.BLL.Interfaces.csproj">
-      <Project>{1157976D-3717-43A6-9271-B93F18407AF2}</Project>
+      <Project>{ffe741a9-810f-4045-94cb-ac8149744f7b}</Project>
       <Name>Epam.Task06.BLL.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.Task06.DependencyResolver\Epam.Task06.DependencyResolver.csproj">
-      <Project>{fc47e290-0f98-46a9-89bd-c01f855fe34a}</Project>
+      <Project>{17e3c8d6-6182-41a8-8b76-6cd7bf81dc02}</Project>
       <Name>Epam.Task06.DependencyResolver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.Task06.Entities\Epam.Task06.Entities.csproj">
-      <Project>{0d2ab0f4-456a-4ff1-acd7-2d44ec9a8c2a}</Project>
-      <Name>Epam.Task06.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

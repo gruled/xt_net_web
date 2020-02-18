@@ -3,32 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Interfaces;
+using Entities;
 using Epam.Task06.BLL.Interfaces;
-using Epam.Task06.DAL.Interfaces;
-using Epam.Task06.Entities;
 
 namespace Epam.Task06.BLL
 {
-    public class UserLogic: IUserLogic
+    public class UserLogic : IUserLogic
     {
         private readonly IUserDAO _userDao;
-        public UserLogic(IUserDAO userDao)
+        private readonly IUsersAndAwardsDAO _usersAndAwardsDao;
+
+        public UserLogic(IUserDAO userDao, IUsersAndAwardsDAO usersAndAwardsDao)
         {
-            _userDao = userDao;
+            this._userDao = userDao;
+            this._usersAndAwardsDao = usersAndAwardsDao;
         }
-        public int Add(User user)
+        public void Add(User user)
         {
-            return _userDao.Add(user);
+            _userDao.Add(user);
         }
 
         public void DeleteById(int id)
         {
             _userDao.DeleteById(id);
+            _usersAndAwardsDao.DeleteLinkByUserId(id);
         }
 
         public IEnumerable<User> GetAll()
         {
             return _userDao.GetAll();
+        }
+
+        public User GetUserById(int id)
+        {
+            return _userDao.GetUserById(id);
+        }
+
+        public void Update(int id, User newUser)
+        {
+            _userDao.Update(id, newUser);
         }
     }
 }

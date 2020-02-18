@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.Task06.BLL.Interfaces
+namespace Entities
 {
-    public interface ISettingsLogic
+    public struct Award
     {
-        string GetPath();
-        void SetPath(string path);
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 }
