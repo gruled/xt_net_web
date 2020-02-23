@@ -1,0 +1,50 @@
+﻿@using Entities
+@using Epam.Task06.DependencyResolver
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin") || !User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+    if (IsPost)
+    {
+        var uploadedFile = WebImage.GetImageFromRequest();
+        uploadedFile.Resize(128, 128*(uploadedFile.Height/uploadedFile.Width));
+        var aId = DependencyResolver.AwardLogic.Add(new Award(){Title = Request["name"]});
+        int imageId = DependencyResolver.ImagesLogic.AddImage(new Image(){Value =uploadedFile.GetBytes()});
+        DependencyResolver.AwardsAndImagesLogic.AddLink(aId, imageId);
+        Response.Redirect("~");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("~/Pages/_TitlePartial.cshtml")
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="bg-info">Редактирование пользователя</div>
+            <div style="background-color: gainsboro;">
+                <form enctype="multipart/form-data" action="~/Pages/AddAward.cshtml" method="post">
+                    <div>
+                        <label class="lb">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px;margin-left: 15px" type="text" name="name" />
+                    </div>
+                    <div>
+                        <label class="lb">Изображение</label><input class="form-control, lb" style="width: 200px; height: 30px;margin-left: 15px" type="file" accept="image/jpeg,image/png" name="file" />
+                    </div>
+                    <button class="btn-primary" style="width: 200px; margin-left: 85px">Сохранить</button>
+                </form>
+            </div>
+        }
+    </div>
+</body>
+</html>

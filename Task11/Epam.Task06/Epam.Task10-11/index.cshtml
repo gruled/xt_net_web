@@ -1,0 +1,160 @@
+﻿@using System.Configuration
+@using Entities
+@using Epam.Task06.BLL
+@using Epam.Task06.DependencyResolver
+
+@{
+    Layout = "Layouts/_MainLayout.cshtml";
+    var users = DependencyResolver.UserLogic.GetAll();
+    var awardsEnumerable = DependencyResolver.AwardLogic.GetAll();
+}
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <div class="bg-info">Инструменты администратора</div>
+        <div class="bt">
+            <button id="addUser" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Добавление пользователя</button>
+        </div>
+        <div class="bt">
+            <button id="addAward" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Добавление награды</button>
+        </div>
+        <div class="bt">
+            <button id="manageUsers" class="btn-link" style="width: 300px; height: 30px; margin-left: 70px">Управление зарегист. пользователями</button>
+        </div>
+
+        <script>
+            $('#manageUsers').click(function () {
+                location.href = '/Pages/ManageUsers';
+            })
+            $('#addAward').click(function () {
+                location.href = '/Pages/AddAward';
+            })
+            $('#addUser').click(function () {
+                location.href = '/Pages/AddUser';
+            })
+        </script>
+    }
+}
+
+@if (User.IsInRole("Admin"))
+{
+    if (awardsEnumerable.Any())
+    {
+        <div class="bg-info">Список наград</div>
+
+        foreach (var award in awardsEnumerable)
+        {
+            <div style="background-color:gainsboro;">
+                @{ string s = "#" + award.Title; }
+                <div style="background-color: gainsboro;">
+                    <div class="text-info" style="margin: 10px 10px">Имя: @award.Title</div>
+                    @{
+                        var imgLinks = DependencyResolver.AwardsAndImagesLogic.GetAll().Where(item => item.EntityId == award.Id);
+                        if (imgLinks.Any())
+                        {
+                            foreach (var entityAndImagese in imgLinks)
+                            {
+                                var image = DependencyResolver.ImagesLogic.GetImageById(entityAndImagese.ImageId);
+                                <div class="text-info" style="margin: 10px 10px"><img style="max-width: 128px;" src='data:image/;base64,@Convert.ToBase64String(image.Value)' /></div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-info" style="margin: 10px 10px"><img style="max-width: 128px;" src='img/mramor.jpg' /></div>
+                        }
+                    }
+                </div>
+
+                <form action="~/Pages/UpdateAward.cshtml" method="post">
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@award.Id" />
+                    <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Редактировать</button>
+                </form>
+                <form action="~/Pages/DeleteAward.cshtml" method="post">
+                    <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@award.Id" />
+                    <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Удалить</button>
+                </form>
+            </div>
+        }
+    }
+}
+
+
+@if (users.Any())
+{
+    <div class="bg-info">Список пользователей</div>
+    foreach (var user in users)
+    {
+<div style="background-color: gainsboro;">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="text-info" style="margin: 10px 10px">Номер: @user.Id</div>
+    }
+    <div class="text-info" style="margin: 10px 10px">Имя: @user.Name</div>
+    <div class="text-info" style="margin: 10px 10px">Возраст: @user.Age</div>
+    <div class="text-info" style="margin: 10px 10px">Дата рождения: @user.DateOfBirth.ToShortDateString()</div>
+    @{
+        var imgLinks = DependencyResolver.UsersAndImagesLogic.GetAll().Where(item => item.EntityId == user.Id);
+        if (imgLinks.Any())
+        {
+            <div class="text-info" style="margin: 10px 10px">Изображения:</div>
+            foreach (var item in imgLinks)
+            {
+                var image = DependencyResolver.ImagesLogic.GetImageById(item.ImageId);
+                <div class="text-info" style="margin: 10px 10px"><img style="margin-left: 50px;" src='data:image/;base64,@Convert.ToBase64String(image.Value)' /> </div>
+            }
+        }
+        else
+        {
+            <div class="text-info" style="margin: 10px 10px"><img style="max-width: 128px; margin-left: 50px;" src='img/mramor.jpg' /> </div>
+        }
+    }
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+
+
+        var listAwards = DependencyResolver.UsersAndAwardsLogic.GetAll().Where(awardItem => awardItem.IdUser == user.Id);
+        if (listAwards.Any())
+        {
+            <div class="text-info" style="margin: 10px 10px">Награды:</div>
+            foreach (var itemAwards in listAwards)
+            {
+                var award = DependencyResolver.AwardLogic.GetAll().FirstOrDefault(awards => awards.Id == itemAwards.IdAward);
+                <div class="text-info" style="margin: 10px 10px"> @award.Title</div>
+                var imgLinksAwards = DependencyResolver.AwardsAndImagesLogic.GetAll().Where(imgItem => imgItem.EntityId == award.Id);
+                if (imgLinksAwards.Any())
+                {
+                    foreach (var item in imgLinksAwards)
+                    {
+                        var image = DependencyResolver.ImagesLogic.GetImageById(item.ImageId);
+                        <div class="text-info" style="margin: 10px 10px"><img style="margin-left: 50px;" src='data:image/;base64,@Convert.ToBase64String(image.Value)' /> </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-info" style="margin: 10px 10px"><img style="max-width: 128px;margin-left: 50px;" src='img/mramor.jpg' /> </div>
+                }
+            }
+        }
+
+        if (User.IsInRole("Admin"))
+        {
+            string s = "#" + user.Name;
+            <form action="~/Pages/UpdateUser.cshtml" method="post">
+                <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@user.Id" />
+                <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Редактировать</button>
+            </form>
+            <form action="~/Pages/DeleteUser.cshtml" method="post">
+                <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@user.Id" />
+                <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Удалить</button>
+            </form>
+        }
+    }
+</div>
+    }
+}
+else
+{
+    <div class="bg-info">Список пользователей пуст</div>
+}

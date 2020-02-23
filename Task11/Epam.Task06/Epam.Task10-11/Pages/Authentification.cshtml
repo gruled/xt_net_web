@@ -1,0 +1,21 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    if (IsPost)
+    {
+        var users = DependencyResolver.IWebUserLogic.GetAllWebUsers();
+        string name = null;
+        string password = null;
+        name = Request["Name"];
+        password = Request["Password"];
+        var isFoundUser = users.Any(item => item.Login == name && item.Password == password);
+        if (isFoundUser)
+        {
+            FormsAuthentication.SetAuthCookie(name, createPersistentCookie: true);
+            Response.Redirect("~");
+        }
+        else
+        {
+            Response.Redirect("~");
+        }
+    }
+}

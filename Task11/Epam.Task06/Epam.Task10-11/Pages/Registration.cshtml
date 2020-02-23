@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+<div class="Titles">
+    <form action="~/Pages/Login.cshtml" method="post">
+        <div>
+            <label class="lb">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="Name" />
+        </div>
+        <div>
+            <label class="lb">Пароль</label><input class="form-control, lb" style="width: 200px; height: 30px" type="password" name="Password" />
+        </div>
+        <button class="btn-primary" style="width: 200px; margin-left: 70px">Зарегистрироваться</button>
+    </form>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

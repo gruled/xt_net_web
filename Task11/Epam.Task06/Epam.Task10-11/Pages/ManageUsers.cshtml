@@ -1,0 +1,55 @@
+﻿@using Epam.Task06.DependencyResolver
+@{
+    Layout = null;
+    if (!User.IsInRole("Admin") || !User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+<div>
+    @RenderPage("~/Pages/_TitlePartial.cshtml")
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="bg-info">Список зарегистрированных пользователей</div>
+        var users = DependencyResolver.IWebUserLogic.GetAllWebUsers();
+        foreach (var item in users)
+        {
+            string s = item.Login;
+            <div style="background-color:gainsboro;">
+                <div class="text-info" style="margin: 10px 10px">Имя: @item.Login</div>
+                @{
+                    string Roles = DependencyResolver.IUserRoleLogic.GetRoleById(item.Role);
+                }
+                <div class="text-info" style="margin: 10px 10px">Статус: @Roles</div>
+                <div>
+                    <form action="~/Pages/ChangeRole.cshtml" method="post" enctype="multipart/form-data">
+                        <input style="width: 0px; height: 0px; margin: 0 0" name="id" hidden value="@item.Id" />
+                        @{
+                            var allRoles = DependencyResolver.IUserRoleLogic.GetAllRoles();
+                        }
+                    <select name="role">
+                        @foreach (var role in allRoles)
+                        {
+                            <option value="@role.Id">@role.Title</option>
+                        }
+                    </select>
+                        <button id=@s class="btn-link" style="width: 150px; margin-left: 70px;">Изменить права</button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</div>
+</body>
+</html>

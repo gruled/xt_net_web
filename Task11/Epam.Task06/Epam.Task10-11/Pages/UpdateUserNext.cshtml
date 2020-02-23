@@ -1,0 +1,25 @@
+﻿@using System.Text.RegularExpressions
+@using Entities
+@using Epam.Task06.DependencyResolver
+@{
+    if (User.IsInRole("Admin"))
+    {
+        int id = int.Parse(Request["id"]);
+        string name = Request["Name"];
+        DateTime dateOfBirth = DateTime.Parse(Request["dateOfBirth"]);
+        int age = int.Parse(Request["age"]);
+
+        DependencyResolver.UserLogic.Update(id, new User(){Name = name, Age = age, DateOfBirth = dateOfBirth});
+        DependencyResolver.UsersAndAwardsLogic.DeleteLinkByUserId(id);
+        if (Request["awards"] != null)
+        {
+            string[] roles = Request["awards"] .Split(',');
+            foreach (var item in roles)
+            {
+                DependencyResolver.UsersAndAwardsLogic.AddLink(id, int.Parse(item));
+            }
+        }
+
+    }
+    Response.Redirect("~");
+}

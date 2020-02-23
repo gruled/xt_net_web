@@ -1,0 +1,18 @@
+﻿@using Entities
+@using Epam.Task06.DependencyResolver
+@{
+    if (User.IsInRole("Admin"))
+    {
+        if (IsPost)
+        {
+            int id = int.Parse(Request["idUpdate"]);
+            string title = Request["title"];
+            DependencyResolver.AwardLogic.Update(id, new Award(){Title = title});
+        }
+        Response.Redirect("~");
+    }
+    else
+    {
+        Response.Redirect("~");
+    }
+}

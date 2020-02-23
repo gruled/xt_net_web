@@ -1,0 +1,50 @@
+﻿@{
+Layout = null;
+}
+
+<div class="Titles">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        string str = "";
+        if (User.IsInRole("Admin"))
+        {
+            str = "(режим администратора)";
+        }
+        <div>
+            <h3>Здравствуйте @User.Identity.Name @str</h3>
+        </div>
+    }
+    <form action="~/Pages/Authentification.cshtml" method="post">
+        <div>
+            <label class="lb">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="Name" value=@User.Identity.Name>
+        </div>
+        <div>
+            <label class="lb">Пароль</label><input class="form-control, lb" style="width: 200px; height: 30px" type="password" name="Password" />
+        </div>
+        <button class="btn-primary" style="width: 200px; margin-left: 80px">Войти</button>
+    </form>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="bt">
+            <button id="signOut" class="btn-primary" style="width: 200px; margin-left: 80px">Выйти</button>
+        </div>
+    }
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="bt">
+            <button id="registration" class="btn-primary" style="width: 200px; margin-left: 80px">Регистрация</button>
+        </div>
+    }
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script>
+        $('#signOut').click(function () {
+            location.href = '/Pages/SignOut';
+        });
+        $('#registration').click(function () {
+            location.href = '/Pages/Registration';
+        });
+    </script>
+</div>

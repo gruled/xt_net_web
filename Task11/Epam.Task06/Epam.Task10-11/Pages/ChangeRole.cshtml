@@ -1,0 +1,16 @@
+﻿@using Entities
+@using Epam.Task06.DependencyResolver
+@{
+    if (User.Identity.IsAuthenticated&&User.IsInRole("Admin"))
+    {
+        if (IsPost)
+        {
+            int id =int.Parse(Request["id"]);
+            int role = int.Parse(Request["role"]);
+            var user = DependencyResolver.IWebUserLogic.GetWebUserById(id);
+            DependencyResolver.IWebUserLogic.UpdateWebUserById(id,new WebUser(){Login = user.Login, Password = user.Password, Role = role});
+            Response.Redirect("~");
+        }
+    }
+    Response.Redirect("~");
+}

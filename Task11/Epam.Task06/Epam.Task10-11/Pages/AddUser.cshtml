@@ -1,0 +1,87 @@
+﻿@using System.Text.RegularExpressions
+@using Entities
+@using Epam.Task06.DependencyResolver
+@{
+    string tre = "";
+    Layout = null;
+    if (!User.IsInRole("Admin") || !User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+    }
+    if (IsPost)
+    {
+        string name = Request["name"];
+        int age = int.Parse(Request["age"]);
+        DateTime dateOfBirth = DateTime.Parse(Request["dateOfBirth"]);
+        var userId = DependencyResolver.UserLogic.Add(new User() { Name = name, Age = age, DateOfBirth = dateOfBirth });
+        var awardsList = Request["awards"].Split(',');
+        foreach (var item in awardsList)
+        {
+            DependencyResolver.UsersAndAwardsLogic.AddLink(userId, int.Parse(item));
+        }
+
+        var uploadedFile = WebImage.GetImageFromRequest();
+        if (uploadedFile!=null)
+        {
+            uploadedFile.Resize(128, 128 * (uploadedFile.Height / uploadedFile.Width));
+            int imageId = DependencyResolver.ImagesLogic.AddImage(new Image() { Value = uploadedFile.GetBytes() });
+            DependencyResolver.UsersAndImagesLogic.AddLink(userId, imageId);
+        }
+        
+        Response.Redirect("~");
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @RenderPage("_TitlePartial.cshtml")
+        <div>@tre</div>
+        <div class="bg-info">Добавление пользователя</div>
+
+        <div style="background-color: gainsboro;">
+            <form enctype="multipart/form-data" action="~/Pages/AddUser.cshtml" method="post">
+                <div>
+                    <label class="lb" style="margin-right: 40px">Имя</label><input class="form-control, lb" style="width: 200px; height: 30px" type="text" name="Name">
+                </div>
+                <div>
+                    <label class="lb" style="margin-right: 40px">Дата рождения</label><input class="form-control, lb" style="width: 200px; height: 30px" type="date" name="dateOfBirth" />
+                </div>
+                <div>
+                    <label class="lb" style="margin-right: 40px">Возраст</label><input class="form-control, lb" style="width: 200px; height: 30px" type="number" name="age">
+                </div>
+                <div>
+                    <label class="lb">Изображение</label><input class="form-control, lb" style="width: 200px; height: 30px;margin-left: 50px" type="file" accept="image/jpeg,image/png" name="file" />
+                </div>
+                @{
+                    var awards = DependencyResolver.AwardLogic.GetAll();
+                    if (awards.Any())
+                    {
+                        <div>
+                            <label class="lb" style="margin-right: 40px">Награды</label>
+                            <select class="lb" style="width: 200px; margin-left: 5px;" multiple name="awards">
+                                @foreach (var award in awards)
+                                {
+                                    <option value="@award.Id">@award.Title</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                }
+
+                <button class="btn-primary" style="width: 200px; margin-left: 120px">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
